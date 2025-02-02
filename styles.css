@@ -1,0 +1,287 @@
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --text-color: #34495e;
+    --background-light: #ecf0f1;
+    --background-dark: #2c3e50;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+header {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 0;
+    position: relative;
+}
+
+header::after {
+    content: '"';
+    font-size: 200px;
+    position: absolute;
+    opacity: 0.1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Georgia, serif;
+    z-index: 0;
+}
+
+h1 {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: var(--accent-color);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+nav {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    margin-bottom: 15px;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 12px 20px;
+    display: block;
+    border-radius: 8px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.1));
+    transition: var(--transition);
+    z-index: -1;
+}
+
+nav ul li a:hover::before {
+    left: 100%;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+main {
+    position: relative;
+}
+
+#poemContent {
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.poem-text {
+    font-size: 1.2em;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-top: 30px;
+    position: relative;
+    padding: 20px;
+    border-left: 3px solid var(--accent-color);
+    background: rgba(231, 76, 60, 0.05);
+}
+
+h3 {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h3::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--accent-color);
+}
+
+footer {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: var(--text-color);
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+@media (max-width: 968px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+    
+    nav {
+        position: relative;
+        top: 0;
+    }
+}
+
+/* Add animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.poem-text {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.theme-filters {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.theme-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--background-light);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9em;
+}
+
+.theme-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.theme-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.poem-header {
+    margin-bottom: 30px;
+}
+
+.poem-meta {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.poem-number {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+.poem-theme {
+    padding: 4px 12px;
+    border-radius: 15px;
+    color: white;
+    font-size: 0.9em;
+}
+
+.poem-date {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+nav ul li a {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    transition: all 0.3s ease;
+}
+
+nav ul li a.active {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.poem-text p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} 
